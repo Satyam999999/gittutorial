@@ -1,0 +1,248 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define the structure for a tree node
+struct Node {
+    int data;
+    struct Node* left;
+    struct Node* right;
+};
+
+// Function to create a new node
+struct Node* createNode(int data) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+
+// Function to insert a node into the BST
+struct Node* insert(struct Node* root, int data) {
+    if (root == NULL) {
+        return createNode(data);
+    }
+    if (data < root->data) {
+        root->left = insert(root->left, data);
+    } else if (data > root->data) {
+        root->right = insert(root->right, data);
+    }
+    return root;
+}
+
+// Function to search for a node in the BST
+struct Node* search(struct Node* root, int key) {
+    if (root == NULL || root->data == key) {
+        return root;
+    }
+    if (key < root->data) {
+        return search(root->left, key);
+    }
+    return search(root->right, key);
+}
+
+// Function to find the minimum value node
+struct Node* findMin(struct Node* root) {
+    while (root->left != NULL) {
+        root = root->left;
+    }
+    return root;
+}
+
+// Function to find the maximum value node
+struct Node* findMax(struct Node* root) {
+    while (root->right != NULL) {
+        root = root->right;
+    }
+    return root;
+}
+
+// Function to find the predecessor of a given node
+struct Node* predecessor(struct Node* root, int key) {
+    struct Node* current = search(root, key);
+    if (current == NULL) return NULL;
+
+    if (current->left != NULL) {
+        return findMax(current->left);
+    }
+
+    struct Node* pred = NULL;
+    struct Node* ancestor = root;
+
+    while (ancestor != current) {
+        if (current->data > ancestor->data) {
+            pred = ancestor;
+            ancestor = ancestor->right;
+        } else {
+            ancestor = ancestor->left;
+        }
+    }
+    return pred;
+}
+
+// Function to find the successor of a given node
+struct Node* successor(struct Node* root, int key) {
+    struct Node* current = search(root, key);
+    if (current == NULL) return NULL;
+
+    if (current->right != NULL) {
+        return findMin(current->right);
+    }
+
+    struct Node* succ = NULL;
+    struct Node* ancestor = root;
+
+    while (ancestor != current) {
+        if (current->data < ancestor->data) {
+            succ = ancestor;
+            ancestor = ancestor->left;
+        } else {
+            ancestor = ancestor->right;
+        }
+    }
+    return succ;
+}
+
+// Function to delete a node from the BST
+struct Node* deleteNode(struct Node* root, int key) {
+    if (root == NULL) return root;
+
+    if (key < root->data) {
+        root->left = deleteNode(root->left, key);
+    } else if (key > root->data) {
+        root->right = deleteNode(root->right, key);
+    } else {
+        // Node with only one child or no child
+        if (root->left == NULL) {
+            struct Node* temp = root->right;
+            free(root);
+            return temp;
+        } else if (root->right == NULL) {
+            struct Node* temp = root->left;
+            free(root);
+            return temp;
+        }
+
+        // Node with two children: Get the inorder successor (smallest in the right subtree)
+        struct Node* temp = findMin(root->right);
+        root->data = temp->data;
+        root->right = deleteNode(root->right, temp->data);
+    }
+    return root;
+}
+
+// Function for in-order traversal
+void inorder(struct Node* root) {
+    if (root != NULL) {
+        inorder(root->left);
+        printf("%d ", root->data);
+        inorder(root->right);
+    }
+}
+
+// Function for pre-order traversal
+void preorder(struct Node* root) {
+    if (root != NULL) {
+        printf("%d ", root->data);
+        preorder(root->left);
+        preorder(root->right);
+    }
+}
+
+// Function for post-order traversal
+void postorder(struct Node* root) {
+    if (root != NULL) {
+        postorder(root->left);
+        postorder(root->right);
+        printf("%d ", root->data);
+    }
+}
+
+// Function for level-order traversal
+void levelOrder(struct Node* root) {
+    if (root == NULL) return;
+
+    struct Node** queue = (struct Node**)malloc(100 * sizeof(struct Node*));
+    int front = 0, rear = 0;
+
+    queue[rear++] = root;
+
+    while (front < rear) {
+        struct Node* current = queue[front++];
+        printf("%d ", current->data);
+
+        if (current->left != NULL) {
+            queue[rear++] = current->left;
+        }
+        if (current->right != NULL) {
+            queue[rear++] = current->right;
+        }
+    }
+    free(queue);
+}
+
+// Main function
+int main() {
+    struct Node* root = NULL;
+
+    // Inserting nodes into the BST
+    root = insert(root, 50);
+    insert(root, 30);
+    insert(root, 20);
+    insert(root, 40);
+    insert(root, 70);
+    insert(root, 60);
+    insert(root, 80);
+
+    // Printing traversals
+    printf("In-order traversal: ");
+    inorder(root);
+    printf("\n");
+
+    printf("Pre-order traversal: ");
+    preorder(root);
+    printf("\n");
+
+    printf("Post-order traversal: ");
+    postorder(root);
+    printf("\n");
+
+    printf("Level-order traversal: ");
+    levelOrder(root);
+    printf("\n");
+
+    // Searching for a node
+    int key = 40;
+    struct Node* searchResult = search(root, key);
+    if (searchResult) {
+        printf("Node %d found in the BST.\n", key);
+    } else {
+        printf("Node %d not found in the BST.\n", key);
+    }
+
+    // Finding predecessor and successor
+    struct Node* pred = predecessor(root, 40);
+    struct Node* succ = successor(root, 40);
+    if (pred) {
+        printf("Predecessor of 40: %d\n", pred->data);
+    } else {
+        printf("No predecessor for 40.\n");
+    }
+    if (succ) {
+        printf("Successor of 40: %d\n", succ->data);
+    } else {
+        printf("No successor for 40.\n");
+    }
+
+    // Finding minimum and maximum
+    printf("Minimum element: %d\n", findMin(root)->data);
+    printf("Maximum element: %d\n", findMax(root)->data);
+
+    // Deleting a node
+    root = deleteNode(root, 20);
+    printf("In-order traversal after deleting 20: ");
+    inorder(root);
+    printf("\n");
+
+    return 0;
+}
+

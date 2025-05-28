@@ -1,0 +1,1 @@
+/bookprice[index]

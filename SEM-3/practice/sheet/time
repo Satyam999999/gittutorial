@@ -1,0 +1,229 @@
+Greedy Algorithms
+0/1 Knapsack Problem:
+
+Time Complexity: O(n * W)
+
+Space Complexity: O(n * W) (for the dynamic programming table)
+
+Unbounded Knapsack Problem:
+
+Time Complexity: O(n * W)
+
+Space Complexity: O(W) (for the dynamic programming table)
+
+Huffman Coding:
+
+Time Complexity: O(n log n)
+
+Space Complexity: O(n) (for the heap and encoding table)
+
+Fractional Knapsack:
+
+Time Complexity: O(n log n)
+
+Space Complexity: O(n) (for storing the items and sorting them)
+
+Activity Selection Problem:
+
+Time Complexity: O(n log n)
+
+Space Complexity: O(n) (for storing the activities)
+
+Job Sequencing Problem:
+
+Time Complexity: O(n log n)
+
+Space Complexity: O(n) (for storing the jobs and scheduling)
+
+Minimum Spanning Tree (Prim’s and Kruskal’s):
+
+Prim’s Algorithm:
+
+Time Complexity: O(E log V)
+
+Space Complexity: O(V + E) (for storing the graph and priority queue)
+
+Kruskal’s Algorithm:
+
+Time Complexity: O(E log E)
+
+Space Complexity: O(V) (for storing the graph and disjoint-set data structure)
+
+Backtracking Algorithms
+N-Queens Problem:
+
+Time Complexity: O(N!)
+
+Space Complexity: O(N) (for the board and recursion stack)
+
+Subset Sum Problem:
+
+Time Complexity: O(2^n)
+
+Space Complexity: O(n) (for the recursion stack and solution set)
+
+Sudoku Solver:
+
+Time Complexity: O(9^N)
+
+Space Complexity: O(N^2) (for the board and recursion stack)
+
+Permutations Generation:
+
+Time Complexity: O(n!)
+
+Space Complexity: O(n) (for the recursion stack)
+
+Knapsack Problem (with backtracking):
+
+Time Complexity: O(2^n)
+
+Space Complexity: O(n) (for recursion stack)
+
+Divide and Conquer Algorithms
+Merge Sort:
+
+Time Complexity: O(n log n)
+
+Space Complexity: O(n) (for the auxiliary array used in merging)
+
+Quick Sort:
+
+Time Complexity:
+
+Average case: O(n log n)
+
+Worst case: O(n^2)
+
+Space Complexity: O(log n) (for the recursion stack)
+
+Binary Search:
+
+Time Complexity: O(log n)
+
+Space Complexity: O(1) (only requires a few variables)
+
+Matrix Chain Multiplication:
+
+Time Complexity: O(n^3)
+
+Space Complexity: O(n^2) (for the dynamic programming table)
+
+Closest Pair of Points:
+
+Time Complexity: O(n log n)
+
+Space Complexity: O(n) (for storing points and recursion stack)
+
+Strassen’s Matrix Multiplication:
+
+Time Complexity: O(n^2.81)
+
+Space Complexity: O(n^2) (for temporary matrices)
+
+Branch and Bound Algorithms
+Traveling Salesman Problem (TSP):
+
+Time Complexity: O(n!)
+
+Space Complexity: O(n) (for storing visited cities and recursion stack)
+
+Knapsack Problem (Branch and Bound):
+
+Time Complexity: O(2^n)
+
+Space Complexity: O(n) (for storing the state and recursion stack)
+
+Job Scheduling (with branch and bound):
+
+Time Complexity: O(n!)
+
+Space Complexity: O(n) (for storing job states and recursion stack)
+
+Dynamic Programming Algorithms
+0/1 Knapsack Problem:
+
+Time Complexity: O(n * W)
+
+Space Complexity: O(n * W) (for the dynamic programming table)
+
+Unbounded Knapsack Problem:
+
+Time Complexity: O(n * W)
+
+Space Complexity: O(W) (for the dynamic programming table)
+
+Longest Common Subsequence (LCS):
+
+Time Complexity: O(m * n)
+
+Space Complexity: O(m * n) (for the dynamic programming table)
+
+Longest Increasing Subsequence (LIS):
+
+Time Complexity:
+
+Brute force: O(n^2)
+
+Optimized: O(n log n)
+
+Space Complexity: O(n) (for the dynamic programming table or binary search array)
+
+Longest Decreasing Subsequence (LDS):
+
+Time Complexity:
+
+Brute force: O(n^2)
+
+Optimized: O(n log n)
+
+Space Complexity: O(n) (for the dynamic programming table or binary search array)
+
+Matrix Chain Multiplication:
+
+Time Complexity: O(n^3)
+
+Space Complexity: O(n^2) (for the dynamic programming table)
+
+Coin Change Problem:
+
+Time Complexity: O(n * amount)
+
+Space Complexity: O(amount) (for the dynamic programming table)
+
+Edit Distance:
+
+Time Complexity: O(m * n)
+
+Space Complexity: O(m * n) (for the dynamic programming table)
+
+Subset Sum Problem:
+
+Time Complexity: O(n * sum)
+
+Space Complexity: O(sum) (for the dynamic programming table)
+
+Partition Problem:
+
+Time Complexity: O(n * sum)
+
+Space Complexity: O(sum) (for the dynamic programming table)
+
+Rod Cutting Problem:
+
+Time Complexity: O(n^2)
+
+Space Complexity: O(n) (for the dynamic programming table)
+
+Fibonacci Sequence:
+
+Time Complexity: O(n)
+
+Space Complexity: O(1) (for storing the last two values)
+
+String Pattern Matching (KMP Algorithm)
+KMP Pattern Matching:
+
+Time Complexity: O(n + m)
+
+Space Complexity: O(m) (for the LPS array)
